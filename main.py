@@ -7,10 +7,11 @@ tickers = ["IVV", "ILF", "SOXX"] # SP500, LATAM, Semiconductores (IA)
 vector_w = [0.5,0.3,0.2]
 vector_w = np.array(vector_w).reshape(-1,1)
 df_prices = yf.download(tickers, start="2024-01-01", end="2026-09-30")["Close"]
+df_prices = df_prices[tickers]
+
 
 #calcular retornos diarios
 df_ret = df_prices.pct_change().dropna()
-
 
 #calcular matriz varianza covarianza
 df_cov = df_ret.cov()
@@ -44,6 +45,4 @@ print(f"La VaR anual del portafolio es: {var_95*100:.04}%")
 
  
 
-
-
-
+# FIRMA: iOBP5OxjcrMFxWqz7aeA8TLV64C6TW0hUVzg22S8V_8ln2YOsbNNY88Nz4ElRjrtlcTiPu4QF6ci9VebxG0B0wCa-jvzab9CFA==
