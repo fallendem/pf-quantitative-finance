@@ -6,7 +6,7 @@ import yfinance as yf
 tickers = ["IVV", "ILF", "SOXX"] # SP500, LATAM, Semiconductores (IA)
 vector_w = [0.5,0.3,0.2]
 vector_w = np.array(vector_w).reshape(-1,1)
-df_prices = yf.download(tickers, start="2024-01-01", end="2026-09-30")["Close"]
+df_prices = yf.download(tickers, start="2024-01-01", end="2026-10-01")["Close"]
 
 #calcular retornos diarios
 df_ret = df_prices.pct_change().dropna()
@@ -19,10 +19,6 @@ df_cov = df_ret.cov()
 w = vector_w
 w_t = w.T
 sigma = df_cov.values
-
-print("w", w.shape)
-print("w_t", w_t.shape)
-print("sigma", sigma.shape)
 
 varianza = np.dot(sigma, w)
 varianza = np.dot(w_t, varianza)
